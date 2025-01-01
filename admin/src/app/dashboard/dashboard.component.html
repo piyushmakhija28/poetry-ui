@@ -1,0 +1,155 @@
+<div class="container mt-4">
+  <h3 class="mb-3 text-center">Users Statistics</h3>
+  <div class="row g-3">
+    <!-- Total Users Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Total</h5>
+          <p class="count">{{ totalUsersCount }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Users Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Active</h5>
+          <p class="count">{{ activeUsersCount }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Users Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">In Active</h5>
+          <p class="count">{{ inActiveUsersCount }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deleted Users Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Deleted</h5>
+          <p class="count">{{ deletedUsersCount }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logged-In Users Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Logged-In</h5>
+          <p class="count">{{ loggedInUsersCount }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container mt-4">
+  <h3 class="mb-3 text-center">Poems Statistics</h3>
+  <div class="row g-3">
+    <!-- Total Poems Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Total</h5>
+          <p class="count">{{ totalPoemsCount }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Approved Poems Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Approved</h5>
+          <p class="count">{{ approvedPoemsCount }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Approved Poems Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Rejected</h5>
+          <p class="count">{{ rejectedPoemsCount }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Non-Approved Poems Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Awaiting</h5>
+          <p class="count">{{ leftForApprovalOrRejectionPoemsCount }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deleted Poems Count -->
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Deleted</h5>
+          <p class="count">{{ deletedPoemsCount }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="container mt-4">
+  <h3 class="mb-3 text-center">Yearly Statistics For Poems And Users</h3>
+  <div class="row">
+    <!-- Left Section: Yearly User Registrations Chart -->
+    <div class="col-md-6">
+      <div class="card">
+        <h5 class="card-title text-center">Yearly User Registrations</h5>
+        <div class="chart-container">
+          <canvas id="userRegistrationsChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- Right Section: Yearly Poem Submissions Chart -->
+    <div class="col-md-6">
+      <div class="card">
+        <h5 class="card-title text-center">Yearly Poem Submissions</h5>
+        <div class="chart-container">
+          <canvas id="poemSubmissionsChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="row">
+    <!-- Left Section: Yearly User Registrations Chart -->
+    <div class="col-md-6">
+      <div class="card">
+        <h5 class="card-title text-center">Yearly User Registrations</h5>
+        <div class="chart-container">
+          <canvas id="userRegistrationsChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- Right Section: Yearly Poem Submissions Chart -->
+    <div class="col-md-6">
+      <div class="card">
+        <h5 class="card-title text-center">Yearly Poem Submissions</h5>
+        <div class="chart-container">
+          <canvas id="poemSubmissionsChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

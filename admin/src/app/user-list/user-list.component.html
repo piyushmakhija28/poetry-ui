@@ -1,0 +1,355 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>User Table</h2>
+    <button class="btn btn-success" (click)="openAddModal()">
+      <i class="bi bi-plus"></i> Add User
+    </button>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile No</th>
+        <th><i class="bi bi-shield-fill" title="Role"></i></th>
+        <th><i class="bi bi-person-fill" title="Username"></i></th>
+        <th>
+          <i class="bi bi-envelope-fill" title="Email"></i>
+        </th>
+        <th>
+          <i class="bi bi-telephone-fill" title="Mobile"></i>
+        </th>
+        <th>2FA</th>
+        <th>Active</th>
+        <th>Deleted</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.firstName }} {{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.mobileNumber }}</td>
+        <td>{{ user.role === 1 ? "Super Admin" : "User" }}</td>
+        <td>{{ user.username }}</td>
+        <td>
+          <i
+            *ngIf="!user.emailVerified"
+            class="bi bi-x-circle-fill text-danger"
+            title="Not Verified"
+          ></i>
+          <i
+            *ngIf="user.emailVerified"
+            class="bi bi-check-circle-fill text-success"
+            title="Verified"
+          ></i>
+        </td>
+        <td>
+          <i
+            *ngIf="!user.mobileVerified"
+            class="bi bi-x-circle-fill text-danger"
+            title="Not Verified"
+          ></i>
+          <i
+            *ngIf="user.mobileVerified"
+            class="bi bi-check-circle-fill text-success"
+            title="Verified"
+          ></i>
+        </td>
+        <td>
+          <i
+            *ngIf="!user.twoFactorAuthenticationEnabled"
+            class="bi bi-x-circle-fill text-danger"
+            title="Not Verified"
+          ></i>
+          <i
+            *ngIf="user.twoFactorAuthenticationEnabled"
+            class="bi bi-check-circle-fill text-success"
+            title="Verified"
+          ></i>
+        </td>
+        <td>
+          <i
+            *ngIf="!user.active"
+            class="bi bi-x-circle-fill text-danger"
+            title="Not Verified"
+          ></i>
+          <i
+            *ngIf="user.active"
+            class="bi bi-check-circle-fill text-success"
+            title="Verified"
+          ></i>
+        </td>
+        <td>
+          <i
+            *ngIf="!user.deleted"
+            class="bi bi-x-circle-fill text-danger"
+            title="Not Verified"
+          ></i>
+          <i
+            *ngIf="user.deleted"
+            class="bi bi-check-circle-fill text-success"
+            title="Verified"
+          ></i>
+        </td>
+        <td *ngIf="users.length>0">
+          <!-- Edit Button -->
+          <i
+            class="bi bi-pencil me-2"
+            title="Edit"
+            style="font-size: 0.8rem"
+            (click)="openEditModal(user.id)"
+          ></i>
+          <!-- Smaller Icon -->
+
+          <!-- Delete Button -->
+          <i
+            class="bi bi-trash me-2"
+            title="Delete"
+            style="font-size: 0.8rem"
+            (click)="deleteUser(user.id)"
+          ></i>
+          <!-- Smaller Icon -->
+
+          <!-- View Roles Button -->
+          <i
+            class="bi bi-eye me-2"
+            title="View"
+            style="font-size: 0.8rem"
+            (click)="viewRoles(user.id)"
+          ></i>
+          <!-- Smaller Icon -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Edit User Modal -->
+  <div
+    class="modal fade"
+    id="editModal"
+    tabindex="-1"
+    aria-labelledby="editModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstNameUpdate"
+              [(ngModel)]="userForm.firstName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastNameUpdate"
+              [(ngModel)]="userForm.lastName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="mobileNumber" class="form-label">Mobile Number:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="mobileNumberUpdate"
+              [(ngModel)]="userForm.mobileNumber"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="role" class="form-label">Role:</label>
+            <select class="form-select" id="role" [(ngModel)]="userForm.role">
+              <option [value]="1">Super Admin</option>
+              <option [value]="2">User</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary" (click)="updateUser()">
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add User Modal (for adding new users) -->
+  <div
+    class="modal fade"
+    id="addModal"
+    tabindex="-1"
+    aria-labelledby="addModalLabel"
+    aria-hidden="true"
+    data-bs-backdrop="static"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="addModalLabel">Add User</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              [(ngModel)]="userForm.firstName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              [(ngModel)]="userForm.lastName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              [(ngModel)]="userForm.email"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="mobileNumber" class="form-label">Mobile Number:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="mobileNumber"
+              [(ngModel)]="userForm.mobileNumber"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="role" class="form-label">Role:</label>
+            <select class="form-select" id="role" [(ngModel)]="userForm.role">
+              <option [value]="1">Super Admin</option>
+              <option [value]="2">User</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              [(ngModel)]="userForm.username"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              [(ngModel)]="userForm.password"
+            />
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer bg-light">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-success" (click)="addUser()">
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Roles Modal -->
+  <div
+    class="modal fade"
+    id="viewRolesModal"
+    tabindex="-1"
+    aria-labelledby="viewRolesModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewRolesModalLabel">User Roles</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Dynamic Checkboxes for Roles -->
+          <div *ngFor="let role of roles">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="{{role.id}}"
+                (change)="selectRoles(role.id,$event)"
+              />
+              <label class="form-check-label" for="role{{ role.id }}">{{
+                role.name
+              }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary" (click)="saveRoles()">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

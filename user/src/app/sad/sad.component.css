@@ -1,0 +1,6 @@
+button:focus,
+button:active {
+  outline: none; /* Remove outline on focus */
+  box-shadow: none; /* Remove box shadow */
+  background-color: initial; /* Reset background color */
+}

@@ -1,0 +1,54 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #f4f7fa;
+  padding: 50px 0;
+  margin-top: 50px; /* Added margin to give space at the top */
+}
+
+.login-form {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.form-control {
+  border-radius: 5px;
+}
+
+.form-btn {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+}
+
+.form-btn:hover {
+  background-color: #45a049;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+.form-text {
+  font-size: 14px;
+  color: #888;
+}

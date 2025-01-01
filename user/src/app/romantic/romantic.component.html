@@ -1,0 +1,117 @@
+<!-- Subscription Section -->
+<div class="container mt-3 text-center">
+  <div class="input-group" style="max-width: 500px; margin: 0 auto">
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Enter your email"
+      [(ngModel)]="email"
+      aria-label="Email for subscription"
+      required
+    />
+    <button class="btn btn-primary" (click)="subscribe()">Subscribe</button>
+  </div>
+  <p class="mt-2 text-muted">
+    Subscribe to Romantic Poetries to receive them by email
+  </p>
+</div>
+<div class="container my-4">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <!-- Card 1 -->
+    <div class="col" *ngFor="let poetry of poetries">
+      <div class="card h-100">
+        <img
+          src="{{ poetry.imageUrl }}"
+          class="card-img-top"
+          alt="Poetry Image"
+        />
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ poetry.title }}</h5>
+
+          <!-- Action Buttons -->
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn p-1">
+              <i class="bi bi-hand-thumbs-up" style="font-size: 0.9rem"></i> 120
+            </button>
+            <button class="btn p-1">
+              <i class="bi bi-hand-thumbs-down" style="font-size: 0.9rem"></i>
+              30
+            </button>
+            <button class="btn p-1">
+              <i class="bi bi-chat-dots" style="font-size: 0.9rem"></i> 12
+            </button>
+            <button
+              class="btn p-1 btn-outline-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#shareModal"
+            >
+              <i class="bi bi-share" style="font-size: 0.9rem"></i>
+            </button>
+          </div>
+
+          <!-- Read Poetry Button -->
+          <button class="btn btn-primary w-100" (click)="this.sharedService.readPoetry(poetry.id)">
+            Read Poetry
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Structure -->
+<div
+  class="modal fade"
+  id="shareModal"
+  tabindex="-1"
+  aria-labelledby="shareModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shareModalLabel">Share this Poetry</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Place the share icons div here -->
+        <div class="d-flex align-items-center justify-content-around">
+          <!-- WhatsApp -->
+          <a
+            href="https://web.whatsapp.com/send?text=Check%20out%20this%20poetry!%20%F0%9F%92%96"
+            target="_blank"
+            class="btn btn-link p-1 text-success"
+            style="font-size: 1.2rem"
+            title="Share on WhatsApp"
+          >
+            <i class="bi bi-whatsapp"></i>
+          </a>
+          <!-- Facebook -->
+          <a
+            href="https://www.facebook.com/sharer/sharer.php?u=your-link-here"
+            target="_blank"
+            class="btn btn-link p-1 text-primary"
+            style="font-size: 1.2rem"
+            title="Share on Facebook"
+          >
+            <i class="bi bi-facebook"></i>
+          </a>
+          <!-- LinkedIn -->
+          <a
+            href="https://www.linkedin.com/sharing/share-offsite/?url=your-link-here"
+            target="_blank"
+            class="btn btn-link p-1 text-info"
+            style="font-size: 1.2rem"
+            title="Share on LinkedIn"
+          >
+            <i class="bi bi-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/all-poems">lovepoet.com</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/nature">Nature</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/romantic">Romantic</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sad">Sad</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/miscellaneous">Miscellaneous</a>
+        </li>
+        <li class="nav-item" *ngIf="this.sharedService.isLoggedIn">
+          <a class="nav-link" routerLink="/submit">Submit Your Poem</a>
+        </li>
+      </ul>
+      <ng-container *ngIf="!this.sharedService.isLoggedIn">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">Signup</a>
+          </li>
+        </ul>
+      </ng-container>
+      <!-- Show user profile and dropdown if logged in -->
+      <ng-container *ngIf="this.sharedService.isLoggedIn">
+        <!-- Profile Picture Button -->
+        <div class="position-relative" (click)="toggleDropdown()">
+          <img
+            src="{{ this.sharedService.userProfilePhotoUrl }}"
+            alt="Profile"
+            class="rounded-circle"
+            style="width: 40px; height: 40px; cursor: pointer"
+          />
+          Welcome, {{this.sharedService.user}}
+          <!-- Dropdown Menu -->
+          <div
+            *ngIf="isDropdownVisible"
+            class="dropdown-menu dropdown-menu-end show"
+            style="position: absolute; top: 100%; right: 0"
+          >
+            <a class="dropdown-item" href="/profile">View Profile</a>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

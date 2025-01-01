@@ -1,0 +1,66 @@
+<table class="table table-bordered">
+  <thead>
+    <tr *ngIf="poetries && poetries.length>0">
+      <th>ID</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Tags</th>
+      <th>Written By</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Deleted</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let poetry of poetries">
+      <td>{{ poetry.id }}</td>
+      <td>{{ poetry.category }}</td>
+      <td>{{ poetry.title }}</td>
+      <td>{{ poetry.tags }}</td>
+      <td>{{ poetry.createdBy }}</td>
+      <td>{{ poetry.description }}</td>
+      <td>{{ poetry.status }}</td>
+      <td>
+        <i
+          *ngIf="!poetry.deleted"
+          class="bi bi-x-circle-fill text-danger"
+          title="Not Verified"
+        ></i>
+        <i
+          *ngIf="poetry.deleted"
+          class="bi bi-check-circle-fill text-success"
+          title="Verified"
+        ></i>
+      </td>
+      <td>
+        <!-- Delete Button -->
+        <i
+          class="bi bi-trash me-2"
+          title="Delete"
+          style="font-size: 0.8rem"
+          (click)="delete(poetry.id)"
+        ></i>
+        <!-- Smaller Icon -->
+
+        <!-- Approve Button -->
+        <i
+          class="fa fa-check-circle me-2 text-success"
+          title="Approve"
+          style="font-size: 0.9rem; cursor: pointer"
+          (click)="approve(poetry.id)"
+        ></i>
+        <!-- Smaller Icon -->
+
+        <!-- Reject Button -->
+        <i
+          class="fa fa-times-circle me-2 text-danger"
+          title="Reject"
+          style="font-size: 0.9rem; cursor: pointer"
+          (click)="reject(poetry.id)"
+        ></i>
+        <!-- Smaller Icon -->
+      </td>
+    </tr>
+  </tbody>
+</table>

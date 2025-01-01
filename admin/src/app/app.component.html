@@ -1,0 +1,78 @@
+<!-- Check if the current page is the login page -->
+<div *ngIf="isLoginPage; else mainLayout">
+  <!-- Full-page layout for login, taking up the entire screen -->
+  <router-outlet></router-outlet>
+</div>
+<ng-template #mainLayout>
+  <div class="container-fluid vh-100">
+    <div class="row h-100">
+      <!-- Sidebar -->
+      <div
+        class="col-md-3 col-lg-2 bg-dark text-white p-3"
+        style="min-width: 220px"
+      >
+        <div class="d-flex justify-content-center align-items-center mb-4">
+          <div class="text-center">
+            <img
+              src="{{photo}}"
+              alt="Profile Picture"
+              class="rounded-circle"
+              style="width: 120px; height: 120px; object-fit: cover"
+            />
+          </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mb-4">Welcome, {{fullName}}</div>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/dashboard"
+              ><i class="bi bi-grid-fill"></i> Dashboard</a
+            >
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/authorities"
+              ><i class="bi bi-shield-lock"></i> Role Management</a
+            >
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/users"
+              ><i class="bi bi-person-badge"></i> User Management</a
+            >
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/poetries"
+              ><i class="bi bi-person-badge"></i>Poetry Management</a
+            >
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/profile"
+              ><i class="bi bi-person-circle"></i> Profile</a
+            >
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/changePassword"
+              ><i class="bi bi-shield-lock"></i> Change Password</a
+            >
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a
+              class="nav-link text-white text-decoration-none"
+              (click)="logout()"
+              style="cursor: pointer"
+              ><i class="bi bi-box-arrow-right"></i> Logout</a
+            >
+          </li>
+          <!-- Add more links as needed -->
+        </ul>
+      </div>
+      <div class="col-md-9 col-lg-10 p-4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,76 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Submit Your Poem</h2>
+  <form>
+    <!-- Image Upload -->
+    <div class="mb-3">
+      <label for="imageUpload" class="form-label">Upload Image</label>
+      <input
+        type="file"
+        class="form-control"
+        id="imageUpload"
+        name="imageUpload"
+        (change)="onFileChange($event)"
+      />
+    </div>
+
+    <!-- Title -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        placeholder="Enter your poem's title"
+        [(ngModel)]="poetryForm.title"
+      />
+    </div>
+
+    <!-- Tags -->
+    <div class="mb-3">
+      <label for="tags" class="form-label">Tags</label>
+      <input
+        type="text"
+        class="form-control"
+        id="tags"
+        name="tags"
+        placeholder="Enter your poem's tags"
+        [(ngModel)]="poetryForm.tags"
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        rows="4"
+        placeholder="Write a brief description of your poem"
+        [(ngModel)]="poetryForm.description"
+      ></textarea>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <select
+        class="form-select"
+        id="category"
+        name="category"
+        [(ngModel)]="poetryForm.category"
+      >
+        <option value="NATURE">Nature</option>
+        <option value="ROMANTIC">Romantic</option>
+        <option value="SAD">Sad</option>
+        <option value="MISC">Miscellaneous</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary w-100" (click)="submit()">
+      Submit Poem
+    </button>
+  </form>
+</div>

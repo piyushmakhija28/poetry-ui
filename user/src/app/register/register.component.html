@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="registration-form">
+    <h2>Sign Up</h2>
+    <form class="needs-validation" novalidate>
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          [(ngModel)]="registrationForm.firstName"
+          id="firstName"
+          name="firstName"
+          class="form-control validate"
+          placeholder="Enter your first name"
+        />
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          [(ngModel)]="registrationForm.lastName"
+          id="lastName"
+          name="lastName"
+          class="form-control"
+          placeholder="Enter your last name"
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          [(ngModel)]="registrationForm.email"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="Enter your email"
+        />
+        <small id="emailHelp" class="form-text"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
+
+      <!-- Mobile Number -->
+      <div class="form-group">
+        <label for="mobileNumber" class="form-label">Mobile Number</label>
+        <input
+          type="text"
+          [(ngModel)]="registrationForm.mobileNumber"
+          id="mobileNumber"
+          name="mobileNumber"
+          class="form-control"
+          placeholder="Enter your mobile number"
+        />
+      </div>
+
+      <!-- Username -->
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <input
+          type="text"
+          [(ngModel)]="registrationForm.username"
+          id="username"
+          name="username"
+          class="form-control"
+          placeholder="Choose a username"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          [(ngModel)]="registrationForm.password"
+          id="password"
+          name="password"
+          class="form-control"
+          placeholder="Choose a password"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-group">
+        <button type="button" (click)="register()" class="form-btn">
+          Register
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center">
+      <p class="form-text">
+        Already have an account? <a href="/login">Login here</a>
+      </p>
+    </div>
+  </div>
+</div>
